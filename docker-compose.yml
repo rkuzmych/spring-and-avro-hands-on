@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  kafka:
+    image: lensesio/fast-data-dev
+    environment:
+      ADV_HOST: 127.0.0.1  # Change to your Docker host IP address
+      RUNTESTS: 0  # Disable self tests to speed up startup
+      SAMPLEDATA: 1  # Disable sample data generation
+      FORWARD_LOGS: 0  # Forward container logs to Kafka (0 to disable)
+    ports:
+      - "2181:2181"  # Zookeeper
+      - "3030:3030"  # Lenses.io UI
+      - "8081:8081"  # Schema Registry
+      - "9581:9581"  # Schema Registry REST
+      - "8082:8082"
+      - "9582:9582"
+      - "9092:9092"  # Kafka
+      - "7203:7203"
